@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { UserDocument } from './user.schema';
 import { UserDetails } from './userDetails.interface';
 import { NewUserDto } from './dto/newUser.dto';
+import { updateUserDto } from './dto/updateUser.dto';
 
 @Injectable()
 export class UserService {
@@ -41,5 +42,14 @@ export class UserService {
     const newUser = new this.userModel(userData);
     // console.log('newUser', newUser);
     return newUser.save();
+  }
+
+  //update user
+  async update(id: string, updateUserDto: updateUserDto): Promise<UserDetails> {
+    const user = await this.userModel
+      .findByIdAndUpdate(id, updateUserDto, { new: true })
+      .exec();
+    if (!user) return null;
+    return this.getUserDetails(user);
   }
 }
