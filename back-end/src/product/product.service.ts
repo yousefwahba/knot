@@ -13,4 +13,8 @@ export class ProductService {
     const newProduct = new this.productModel(product);
     return newProduct.save();
   }
+
+  async getProductById(id: string): Promise<ProductDocument> {
+    return this.productModel.findById(id).exec();
+  }
 }
