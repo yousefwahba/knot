@@ -9,6 +9,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
   @Post('register')
   register(@Body() user: NewUserDto): Promise<UserDetails | null> {
+    // console.log(user);
     return this.authService.register(user);
   }
 }

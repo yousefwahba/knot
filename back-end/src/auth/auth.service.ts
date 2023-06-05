@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import * as bcrypt from 'bcrypt';
 import { NewUserDto } from 'src/user/dto/newUser.dto';
@@ -13,23 +13,21 @@ export class AuthService {
   }
 
   async register(user: Readonly<NewUserDto>): Promise<UserDetails | any> {
-    const { userName, primaryEmail, password } = user;
-
-    const existingUser = await this.userService.findByEmail(primaryEmail);
-
+    const { password, ...userData } = user;
+    //check user exiting
+    const existingUser = await this.userService.findByEmail(
+      userData.primaryEmail,
+    );
     if (existingUser) return 'Email taken!';
-    //   throw new HttpException(
-    //     'An account with that email already exists!',
-    //     HttpStatus.CONFLICT,
-    //   );
 
+    //hash password
     const hashedPassword = await this.hashPassword(password);
 
-    const newUser = await this.userService.create(
-      userName,
-      primaryEmail,
-      hashedPassword,
-    );
+    const newUser = await this.userService.create({
+      ...userData,
+      password: hashedPassword,
+    });
+
     return this.userService.getUserDetails(newUser);
   }
 }
