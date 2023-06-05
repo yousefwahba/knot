@@ -52,4 +52,11 @@ export class UserService {
     if (!user) return null;
     return this.getUserDetails(user);
   }
+
+  //delete user
+  async delete(id: string): Promise<string> {
+    const user = await this.userModel.findByIdAndDelete(id).exec();
+    if (!user) return null;
+    return 'user deleted successfully';
+  }
 }
