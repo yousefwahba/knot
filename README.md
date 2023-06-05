@@ -3,8 +3,9 @@
 To get started with this project, follow these steps:
 
 1. Clone the repository to your local machine.
-2. Install the required dependencies using `npm install`.
-3. Create a `.env` file in the root directory of the project and set the following environment variables:
+2. move to back-end folder `cd back-end/`
+3. Install the required dependencies using `npm install`.
+4. Create a `.env` file in the root directory of the project and set the following environment variables:
 
 ```plaintext
 DB_URI=your_mongodb_uri_here
@@ -12,9 +13,8 @@ JWT_SECRET=your_secret_key_here
 JWT_EXPIRES=3d
 ```
 
-1. move to back-end folder `cd back-end/`
-2. Start the application using `npm run start:dev`
-3. go to `http://localhost:4000`
+5. Start the application using `npm run start:dev`
+6. go to `http://localhost:4000`
 
 ## Features
 
