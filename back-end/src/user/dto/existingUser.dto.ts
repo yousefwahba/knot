@@ -1,5 +1,5 @@
 export class ExistingUserDto {
-  userName: string;
+  userName?: string;
   primaryEmail: string;
   password: string;
 }

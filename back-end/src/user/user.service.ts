@@ -39,7 +39,7 @@ export class UserService {
     userData: NewUserDto & { password: string },
   ): Promise<UserDocument> {
     const newUser = new this.userModel(userData);
-    // console.log('new user', newUser);
+    // console.log('newUser', newUser);
     return newUser.save();
   }
 }
