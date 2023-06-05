@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { User, UserDocument } from './user.schema';
+import { UserDocument } from './user.schema';
 import { UserDetails } from './userDetails.interface';
 import { NewUserDto } from './dto/newUser.dto';
 
@@ -11,19 +11,19 @@ export class UserService {
     @InjectModel('User') private readonly userModel: Model<UserDocument>,
   ) {}
 
-  getUserDetails(user: UserDocument): UserDetails {
-    return {
-      id: user._id,
-      userName: user.userName,
-      primaryEmail: user.primaryEmail,
-    };
-  }
+  // getUserDetails(user: UserDocument): UserDetails {
+  //   return {
+  //     id: user._id,
+  //     userName: user.userName,
+  //     primaryEmail: user.primaryEmail,
+  //   };
+  // }
 
-  //if i want to return all of document data
-  //   getUserDetails(user: UserDocument): UserDetails {
-  //     const { _id: id, ...userData } = user.toObject();
-  //     return { id, ...userData };
-  //     }
+  //   return all of document data
+  getUserDetails(user: UserDocument): UserDetails {
+    const { _id: id, ...userData } = user.toObject();
+    return { id, ...userData };
+  }
 
   async findByEmail(primaryEmail: string): Promise<UserDocument | null> {
     return this.userModel.findOne({ primaryEmail }).exec();
