@@ -20,6 +20,10 @@ export class ProductService {
     return this.productModel.findById(id).exec();
   }
 
+  async getProductsByOwnerId(ownerId: string): Promise<ProductDocument[]> {
+    return this.productModel.find({ ownerId }).exec();
+  }
+
   async getProductWithUser(id: string): Promise<ProductDocument> {
     return this.productModel.findById(id).populate('ownerId').exec();
   }
