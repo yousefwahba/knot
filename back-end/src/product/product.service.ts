@@ -27,4 +27,10 @@ export class ProductService {
   async getProductWithUser(id: string): Promise<ProductDocument> {
     return this.productModel.findById(id).populate('ownerId').exec();
   }
+
+  async getProductsWithUserByOwnerId(
+    ownerId: string,
+  ): Promise<ProductDocument[]> {
+    return this.productModel.find({ ownerId }).populate('ownerId').exec();
+  }
 }
