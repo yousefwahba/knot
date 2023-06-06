@@ -18,8 +18,8 @@ export class Product {
   @Prop({ type: Boolean, default: true })
   active: boolean;
 
-  @Prop({ type: SchemaTypes.ObjectId, ref: 'User', required: true })
-  ownerId: UserDocument;
+  @Prop({ type: SchemaTypes.ObjectId, ref: 'User' })
+  ownerId: UserDocument | null;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

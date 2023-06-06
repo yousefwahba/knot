@@ -16,6 +16,8 @@ export class ProductService {
     return newProduct.save();
   }
 
+  //get
+
   async getProductById(id: string): Promise<ProductDocument> {
     return this.productModel.findById(id).exec();
   }
@@ -24,6 +26,7 @@ export class ProductService {
     return this.productModel.find({ ownerId }).exec();
   }
 
+  // get product with user by product Id
   async getProductWithUser(id: string): Promise<ProductDocument> {
     return this.productModel.findById(id).populate('ownerId').exec();
   }
@@ -32,5 +35,32 @@ export class ProductService {
     ownerId: string,
   ): Promise<ProductDocument[]> {
     return this.productModel.find({ ownerId }).populate('ownerId').exec();
+  }
+
+  // updates
+
+  async activeProduct(id: string): Promise<ProductDocument> {
+    const product = await this.getProductById(id);
+    product.active = true;
+    return product.save();
+  }
+
+  async deactiveProduct(id: string): Promise<ProductDocument> {
+    const product = await this.getProductById(id);
+    product.active = false;
+    return product.save();
+  }
+
+  async connectToOwner(id: string, ownerId: string): Promise<ProductDocument> {
+    const product = await this.getProductById(id);
+    const owner = await this.userModel.findById(ownerId).exec();
+    product.ownerId = owner;
+    return product.save();
+  }
+
+  async disconnectFromOwner(id: string): Promise<ProductDocument> {
+    const product = await this.getProductById(id);
+    product.ownerId = null;
+    return product.save();
   }
 }
