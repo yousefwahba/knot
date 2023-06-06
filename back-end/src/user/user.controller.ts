@@ -22,6 +22,13 @@ export class UserController {
     return this.userService.findById(id);
   }
 
+  //get user with products
+  @Get('with-products/:id')
+  async getUserWithProducts(@Param('id') id: string) {
+    const userWithProducts = await this.userService.getUserWithProducts(id);
+    return userWithProducts;
+  }
+
   //update
   @Put(':id')
   async updateUser(

@@ -5,11 +5,13 @@ import { UserDocument } from './user.schema';
 import { UserDetails } from './userDetails.interface';
 import { NewUserDto } from './dto/newUser.dto';
 import { updateUserDto } from './dto/updateUser.dto';
+import { ProductService } from 'src/product/product.service';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectModel('User') private readonly userModel: Model<UserDocument>,
+    private readonly productService: ProductService,
   ) {}
 
   // getUserDetails(user: UserDocument): UserDetails {
@@ -34,6 +36,19 @@ export class UserService {
     const user = await this.userModel.findById(id).exec();
     if (!user) return null;
     return this.getUserDetails(user);
+  }
+
+  async getUserWithProducts(id: string): Promise<any> {
+    const user = await this.userModel.findById(id).exec();
+    if (!user) return null;
+
+    const userDetails = this.getUserDetails(user);
+    const products = await this.productService.getProductsByOwnerId(id);
+
+    return {
+      ...userDetails,
+      products,
+    };
   }
 
   async create(
