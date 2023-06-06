@@ -16,4 +16,10 @@ export class ProductController {
   async getProductById(@Param('id') id: string) {
     return this.productService.getProductById(id);
   }
+
+  //get product with user
+  @Get('user/:id')
+  async getProductWithUser(@Param('id') id: string) {
+    return this.productService.getProductWithUser(id);
+  }
 }
