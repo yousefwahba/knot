@@ -1,3 +1,16 @@
+## Frontend Screens
+
+# Layout Footer and Navbar
+
+<table>
+  <tr>
+    <td>
+      <img src="/front-end/public/RM/img1.png" alt="Image 1" width="73%" height="100%">
+      <img src="/front-end/public/RM/img2.png" alt="Image 2" width="24%" height="100%">
+    </td>
+  </tr>
+</table>
+
 ## Getting Started
 
 To get started with this project, follow these steps:
