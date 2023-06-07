@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UserDocument } from './user.schema';
+import { User, UserDocument } from './user.schema';
 import { UserDetails } from './userDetails.interface';
 import { NewUserDto } from './dto/newUser.dto';
 import { updateUserDto } from './dto/updateUser.dto';
@@ -49,6 +49,19 @@ export class UserService {
       ...userDetails,
       products,
     };
+  }
+  //User
+  async getUserWithSectionsAndLinks(id: string): Promise<UserDocument | null> {
+    return this.userModel
+      .findById(id)
+      .populate({
+        path: 'sections',
+        populate: {
+          path: 'links',
+          model: 'Link',
+        },
+      })
+      .exec();
   }
 
   async create(

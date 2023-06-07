@@ -29,6 +29,12 @@ export class UserController {
     return userWithProducts;
   }
 
+  //
+  @Get('with-links/:id')
+  getUserWithSectionsAndLinks(@Param('id') id: string) {
+    return this.userService.getUserWithSectionsAndLinks(id);
+  }
+
   //update
   @Put(':id')
   async updateUser(
