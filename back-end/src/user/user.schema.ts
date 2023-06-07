@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
+import { SectionDocument } from 'src/link-section/section.schema';
+import { LinkDocument } from 'src/link/link.schema';
 
 // Represents a MongoDB document (to access mongodb properties)
 export type UserDocument = User & Document;
@@ -48,6 +50,12 @@ export class User {
 
   @Prop({ enum: UserType, default: UserType.INDIVIDUAL })
   userType: UserType;
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Section' }] })
+  sections: SectionDocument[];
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Link' }] })
+  links: LinkDocument[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
