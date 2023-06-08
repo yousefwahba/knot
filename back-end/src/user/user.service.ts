@@ -28,6 +28,11 @@ export class UserService {
     return { id, ...userData };
   }
 
+  //get all users
+  async getAllUsers(): Promise<UserDocument[] | null> {
+    return this.userModel.find().exec();
+  }
+
   async findByEmail(primaryEmail: string): Promise<UserDocument | null> {
     return this.userModel.findOne({ primaryEmail }).exec();
   }

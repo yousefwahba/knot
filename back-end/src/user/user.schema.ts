@@ -30,7 +30,7 @@ export class User {
   @Prop()
   bio: string;
 
-  @Prop()
+  @Prop({ default: Date.now })
   createdAt: Date;
 
   @Prop({ default: false })

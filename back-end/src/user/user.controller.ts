@@ -16,6 +16,11 @@ import { updateUserDto } from './dto/updateUser.dto';
 export class UserController {
   constructor(private userService: UserService) {}
 
+  @Get()
+  async getAllUsers() {
+    return this.userService.getAllUsers();
+  }
+
   //   @UseGuards(JwtGuard) //for test protect route
   @Get(':id')
   getUser(@Param('id') id: string): Promise<UserDetails | null> {
