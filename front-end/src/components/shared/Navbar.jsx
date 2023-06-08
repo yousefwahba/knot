@@ -1,4 +1,5 @@
 import { Button, Navbar } from 'flowbite-react';
+import { Link } from 'react-router-dom';
 
 const HeadNavbar = () => {
   return (
@@ -15,19 +16,26 @@ const HeadNavbar = () => {
           </span>
         </Navbar.Brand>
         <div className="flex md:order-2">
-          <Button className="bg-third text-white">Get started</Button>
+          <Button className="bg-third text-white">
+            <Link to="register">Get started</Link>
+          </Button>
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse className="">
-          <Navbar.Link className="nav-link hover:text-primary" href="#">
+          <Link
+            className="nav-link hover:text-primary"
+            activeClassName="text-primary"
+            to="/"
+            exact
+          >
             Home
-          </Navbar.Link>
-          <Navbar.Link className="nav-link" href="#">
-            Dashboard
-          </Navbar.Link>
-          <Navbar.Link className="nav-link" href="#">
+          </Link>
+          <Link className="nav-link" activeClassName="text-primary">
+            <Link to="/dashboard">Dashboard</Link>
+          </Link>
+          <Link className="nav-link" activeClassName="text-primary" to="/about">
             About
-          </Navbar.Link>
+          </Link>
         </Navbar.Collapse>
       </Navbar>
     </div>
