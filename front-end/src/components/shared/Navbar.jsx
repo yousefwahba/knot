@@ -12,7 +12,7 @@ const HeadNavbar = () => {
             src="/logo.svg"
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Knot
+            <Link to="/">Knot</Link>
           </span>
         </Navbar.Brand>
         <div className="flex md:order-2">
@@ -21,19 +21,22 @@ const HeadNavbar = () => {
           </Button>
           <Navbar.Toggle />
         </div>
-        <Navbar.Collapse className="">
+        <Navbar.Collapse className="space-y-3">
           <Link
-            className="nav-link hover:text-primary"
+            className="nav-link hover:text-primary mb-1"
             activeClassName="text-primary"
             to="/"
-            exact
           >
             Home
           </Link>
-          <Link className="nav-link" activeClassName="text-primary">
+          <Link className="nav-link mb-1" activeClassName="text-primary ">
             <Link to="/dashboard">Dashboard</Link>
           </Link>
-          <Link className="nav-link" activeClassName="text-primary" to="/about">
+          <Link
+            className="nav-link mb-1"
+            activeClassName="text-primary"
+            to="/about"
+          >
             About
           </Link>
         </Navbar.Collapse>
