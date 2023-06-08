@@ -1,15 +1,18 @@
 ## Frontend Screens
 
-# Layout Footer and Navbar
-
 <table>
   <tr>
     <td>
-      <img src="/front-end/public/RM/img1.png" alt="Image 1" width="73%" height="100%">
-      <img src="/front-end/public/RM/img2.png" alt="Image 2" width="24%" height="100%">
+      <img src="/front-end/public/RM/img3.png" width="100%" >
+      <img src="/front-end/public/RM/img4.png" width="100%" >
+      <img src="/front-end/public/RM/img5.png" width="100%" >
+      <img src="/front-end/public/RM/img1.png" width="70%" >
+      <img src="/front-end/public/RM/img2.png" width="25%" >
     </td>
   </tr>
 </table>
+
+# Back-end:
 
 ## Getting Started
 
